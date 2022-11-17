@@ -1,50 +1,6 @@
 
 var contentEL = document.querySelector('.content')
 var button = document.getElementById('myBtn')
-// var qA1El = document.createElement("div");
-// var h1El = document.createElement("h1")
-// // Create ordered list element
-// var btnDiv = document.createElement("div")
-// // Create ordered list items
-// // var btn1 = document.createElement("button")
-// // var btn2 = document.createElement("button")
-// // var btn3 = document.createElement("button")
-// // var btn4 = document.createElement("button")
-// qA1El.id = "test1"
-// btnDiv.id = "listBtn"
-
-
-
-
-// button.addEventListener("click", function () {
-//     contentEL.style.display = "none";
-//     qA1El.style.display = "flex"
-// })
-// //add text for header
-// h1El.textContent = "Commonly used data types Do not include:"
-
-// //add text for list items
-// btn1.textContent = "1. Strings"
-// btn2.textContent = "2. booleans"
-// btn3.textContent = "3. alets"
-// btn4.textContent = "4. numbers"
-
-
-// document.body.append(qA1El);
-// qA1El.append(h1El)
-// qA1El.append(btnDiv)
-// btnDiv.append(btn1)
-// btnDiv.append(btn2)
-// btnDiv.append(btn3)
-// btnDiv.append(btn4)
-
-
-// qA1El.style.display = "none";
-
-
-
-
-
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question")
 const choices = document.getElementById("choices")
@@ -65,13 +21,48 @@ var submitBtn = document.getElementById("SubmitBtn")
 var HighscorePage = document.getElementById("HighscorePage")
 var goBackBtnEl = document.getElementById("goBack")
 var clearHighScore = document.getElementById("clearHighscore")
+var viewScores = document.getElementById("view-scores")
+var timerEl = document.querySelector("#timer");
 
+//view high score button
+viewScores.addEventListener("click", function () {
+    startQuiz.style.display = "none";
+    initial.style.display = "none";
+    choices.style.display = "none";
+    quiz.style.display = "none";
+    HighscorePage.style.display = "block"
+})
+
+
+
+// start quiz function
 button.addEventListener("click", function () {
 
     startQuiz.style.display = "none";
     quiz.style.display = "block";
+    setTime()
 })
 
+
+//every second, check if time left is true. Start time at 30. 
+var setTime = function () {
+    timeleft = 30;
+
+    var timercheck = setInterval(function () {
+        timerEl.innerText = timeleft;
+        timeleft--
+
+        if (timeleft < 0) {
+            clearInterval(timercheck)
+            gameOver()
+            finalScore.innerHTML = " Your final score is " + score + "."
+            result.style.display = "block"
+        }
+
+
+    }, 1000)
+}
+// The array of questions  & answer for  quiz game.
 var questions =
     [
         {
@@ -156,6 +147,7 @@ function renderQuestion() {
 renderQuestion()
 var score = 0;
 var list = [];
+timerEl.textContent = 0
 
 
 choices.addEventListener("click", function (event) {
@@ -174,12 +166,14 @@ choices.addEventListener("click", function (event) {
     }
 
 })
-
+//check answer function 
 function checkAnswer(answer) {
     if (answer == questions[runningQuestion].correct) {
+        //display correct! on screen
         score++;
         result.innerHTML = "Correct!"
     } else {
+        //display wrong! on screen
         result.innerHTML = "Wrong!"
     }
 }
@@ -219,6 +213,7 @@ function init() {
     //update the todos array 
     if (storedlist !== null) {
         list = storedlist;
+
     }
 
     renderList()
@@ -242,58 +237,39 @@ initialForm.addEventListener("submit", function (event) {
         score: score,
     }
 
-    // if (nameList == "") {
-    //     return;
-    // }
 
-    // Add new initial to  array, clear the input
+    // Add new initial to  array
     list.push(nameList);
-    // initialName.value = "";
 
     storelist();
     renderList();
 
-
 })
 
 
-
-// // Add click event to todoList element
-// highScore.addEventListener("click", function(event) {
-//   var element = event.target;
-
-//   // Checks if element is a button
-//   if (element.matches("button") === true) {
-//     // Get its data-index value and remove the todo element from the list
-//     var index = element.parentElement.getAttribute("data-index");
-//     todos.splice(index, 1);
-
-//     // Store updated todos in localStorage, re-render the list
-//     storeTodos();
-//     renderTodos();
-//   }
-// });
-
-// // Calls init to retrieve data and render it to the page on load
-// init()
-
+//submit button for initials page
 submitBtn.addEventListener("click", function () {
     initial.style.display = "none";
     HighscorePage.style.display = "block"
-    init()
+    highScore.innerHTML = "";
+
+
 
 
 })
 
-
+//if go back button is hit on high score page
 goBackBtnEl.addEventListener("click", function () {
     HighscorePage.style.display = "none"
     window.location.replace("./index.html");
 
+
 })
 
-
+//clear high score button on high score page
 clearHighScore.addEventListener("click", function () {
     localStorage.clear();
     highScore.innerHTML = "";
 })
+
+init()
