@@ -1,6 +1,7 @@
 
 var contentEL = document.querySelector('.content')
 var button = document.getElementById('myBtn')
+// for quiz question and answer (HTML line-19)
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question")
 const choices = document.getElementById("choices")
@@ -8,19 +9,21 @@ const choiceA = document.getElementById("a")
 const choiceB = document.getElementById("b")
 const choiceC = document.getElementById("c")
 const choiceD = document.getElementById("d")
+// for start Quiz function ( HTML line - 19)
 var button = document.getElementById('myBtn')
 var startQuiz = document.getElementById("startQuiz")
-var result = document.getElementById("result")
-var count = document.getElementById("count")
+//for user initials page (HTML line-44)
 var initial = document.getElementById("initialPage")
 var finalScore = document.getElementById("final-score")
 var highScore = document.getElementById("highScoreList")
 var initialForm = document.getElementById("initial-form")
 var initialName = document.getElementById("initials")
 var submitBtn = document.getElementById("SubmitBtn")
+//for high score page (HTML line-56)
 var HighscorePage = document.getElementById("HighscorePage")
 var goBackBtnEl = document.getElementById("goBack")
 var clearHighScore = document.getElementById("clearHighscore")
+//for timer and view score
 var viewScores = document.getElementById("view-scores")
 var timerEl = document.querySelector("#timer");
 
@@ -126,7 +129,6 @@ var questions =
     ]
 
 
-
 const lastQuestion = questions.length - 1;
 var runningQuestion = 0;
 
@@ -139,8 +141,6 @@ function renderQuestion() {
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
     choiceD.innerHTML = q.choiceD;
-
-
 }
 
 
@@ -149,7 +149,7 @@ var score = 0;
 var list = [];
 timerEl.textContent = 0
 
-
+//go to next question, check if there is more questions
 choices.addEventListener("click", function (event) {
     var element = event.target;
 
@@ -187,16 +187,11 @@ function gameOver() {
 //The following function renders items in a list as <li> elements
 function renderList() {
 
-
-    // highScore.innerHTML = "";
-
-
     for (var i = 0; i < list.length; i++) {
-
-
 
         var li = document.createElement("li");
         highScore.appendChild(li);
+        //Display total score screen at end of game
         li.innerHTML = list[i].name + " - " + list[i].score;
 
     }
@@ -217,17 +212,14 @@ function init() {
     }
 
     renderList()
-
-
-
 }
 
 function storelist() {
 
     // Stringify and set key in localStorage to list array
     localStorage.setItem("list", JSON.stringify(list));
-
 }
+
 
 initialForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -236,15 +228,13 @@ initialForm.addEventListener("submit", function (event) {
         name: initialName.value.trim(),
         score: score,
     }
-
-
     // Add new initial to  array
     list.push(nameList);
 
     storelist();
     renderList();
-
 })
+
 
 
 //submit button for initials page
@@ -252,19 +242,18 @@ submitBtn.addEventListener("click", function () {
     initial.style.display = "none";
     HighscorePage.style.display = "block"
     highScore.innerHTML = "";
-
-
-
-
 })
+
+
 
 //if go back button is hit on high score page
 goBackBtnEl.addEventListener("click", function () {
     HighscorePage.style.display = "none"
     window.location.replace("./index.html");
-
-
 })
+
+
+
 
 //clear high score button on high score page
 clearHighScore.addEventListener("click", function () {
