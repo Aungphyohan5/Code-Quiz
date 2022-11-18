@@ -70,10 +70,10 @@ var questions =
     [
         {
             question: "Commonly used data types Do not include; ",
-            choiceA: " Strings ",
-            choiceB: " booleans",
-            choiceC: "alerts ",
-            choiceD: " numbers",
+            choiceA: "1. Strings ",
+            choiceB: "2. booleans",
+            choiceC: "3. alerts ",
+            choiceD: "4. numbers",
             correct: "C"
         },
 
@@ -84,7 +84,7 @@ var questions =
             choiceB: "2. curly brackets",
             choiceC: "3. parenthesis ",
             choiceD: "4. square brackets",
-            correct: "D"
+            correct: "B"
         },
 
 
@@ -94,7 +94,7 @@ var questions =
             choiceB: "2. other arrays",
             choiceC: "3. booleans ",
             choiceD: "4. all of the above",
-            correct: "A"
+            correct: "D"
 
         },
 
@@ -105,7 +105,7 @@ var questions =
             choiceB: "2. curly brackets",
             choiceC: "3. quotes ",
             choiceD: "4. parenthesis",
-            correct: "B"
+            correct: "C"
         },
 
 
@@ -115,7 +115,7 @@ var questions =
             choiceB: "2. terminal/bash",
             choiceC: "3. for loops ",
             choiceD: "4. console.log",
-            correct: "C"
+            correct: "D"
         },
         {
             question: "... ",
