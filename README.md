@@ -25,13 +25,14 @@ In this project, I created a code quiz application that includes the combination
 
 ## Links
 
-Website URL     - 
+Website URL     -  https://aungphyohan5.github.io/Code-Quiz/
 
 Repository URL  -  https://github.com/Aungphyohan5/Code-Quiz
 
 ## Screenshot
 
-![App Screenshot](./Assets/images/04-web-apis-homework-demo.gif]
+![App Screenshot](./Assets/images/04-web-apis-homework-demo.gif)
+![App Screenshot](./Assets/images/screenshot.png)
 
 ## License
 
